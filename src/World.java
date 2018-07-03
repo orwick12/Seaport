@@ -12,7 +12,7 @@ public class World extends Thing {
     public World(Scanner sc) {
         super(sc);
         ports = new ArrayList<>();
-    }
+    } 
 
     public ArrayList<Seaport> getPorts() {
         return ports;
