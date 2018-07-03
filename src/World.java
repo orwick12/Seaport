@@ -31,17 +31,16 @@ public class World extends Thing {
     }
 
     void process(String st) {
-
+        if (st.startsWith("//")){
+            return;
+        }
         Scanner sc = new Scanner(st);
-        while(sc.hasNext()) {System.out.println("switch");
-            String lineOfText = sc.nextLine();
-            if (lineOfText.startsWith("//")) {
-                System.out.println("skip LIne");
-                    continue;
-                }
-            System.out.println ("Processing >" + st + "<");
-            if (!sc.hasNext()) return;
-            switch (sc.next()) {
+        if(sc.hasNext()) {
+
+            System.out.println ("Reading >" + st + "<");
+            System.out.println (ports.toString());
+
+            switch (sc.next().trim()) {
 
                 case "port":
                     System.out.println("start");
@@ -52,7 +51,6 @@ public class World extends Thing {
                     break;
                 case "pship":
                     assignShip(new PassengerShip(sc));
-
                     break;
                 case "cship":
                     assignShip(new CargoShip(sc));
@@ -60,21 +58,12 @@ public class World extends Thing {
                 case "person":
                     assignPerson(new Person(sc));
                     break;
-                //case "job":
-                  //  addJob(sc);
-                    //break;
                 default:
                     break;
             }
         }
     }
-    Ship getShip (int x) {
-        for (Seaport msp: ports)
-            for (Ship ms: msp.ships)
-                if (ms.index == x)
-                    return ms;
-        return null;
-    }
+
     Dock getDock(int x)
     {
         for (Seaport msp: ports)
@@ -98,11 +87,10 @@ public class World extends Thing {
                 p.ships.add(ms);
                 p.queue.add(ms);
             }
+            return;
         }
-        else {
-            md.ship = ms;
-            getSeaport(md.parent).ships.add(ms);
-        }
+        md.ship = ms;
+        getSeaport (md.parent).ships.add (ms);
     }
 
     public void assignPort(Seaport msp){
@@ -124,9 +112,6 @@ public class World extends Thing {
                 }
             }
         }
-    public void assignJob(Job mj, Thing parent){
-
-    }
 
     public String toString(){
         String out = "\nWorld:\n\n";

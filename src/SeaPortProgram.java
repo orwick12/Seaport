@@ -85,7 +85,7 @@ public class SeaPortProgram extends JFrame {
                 StringBuilder sb = new StringBuilder();
                 BufferedReader reader = new BufferedReader(new FileReader(file));
                 String line = reader.readLine();
-                while(line != null) {
+                while(line != null ) {
                     sb.append(line);
                     sb.append(System.lineSeparator());
                     line = reader.readLine();
