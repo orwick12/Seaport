@@ -6,7 +6,6 @@ public class PassengerShip extends Ship{
     private int numberOfPassengers;
     private int numberOfRooms;
 
-
     public PassengerShip (Scanner sc) {
         super (sc);
         if (sc.hasNextInt()) numberOfPassengers = sc.nextInt();
@@ -43,8 +42,5 @@ public class PassengerShip extends Ship{
 
     public String toString () {
         String st = "Passenger ship: " + super.toString();
-        if (jobs.size() == 0)
-            return st;
-        for (Job mj: jobs) st += "\n       - " + mj;
         return st;    } // end method toString
 }

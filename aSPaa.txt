@@ -32,6 +32,7 @@ port Lanshan 10000 0
     cship            Barcelona 40003 10000 219.92 443.54 104.44 34.16 86.69 139.89 813.72
     cship              Toluene 40004 10000 189.12 448.99 73.97 37.67 88.90 175.03 1002.63
 
+
 // person name index parent skill
 //    person <string> <int> <int> <string>
     person                 Sara 50000 10000 electrician
@@ -39,3 +40,6 @@ port Lanshan 10000 0
     person                Betsy 50004 10000 cleaner
     person               Archie 50003 10000 captain
     person               Thomas 50001 10000 clerk
+  
+
+

@@ -1,4 +1,5 @@
 import java.util.*;
+
 class Person extends Thing{
 
     private String skill;
@@ -6,7 +7,7 @@ class Person extends Thing{
     Person(Scanner sc) {
         super(sc);
         skill = (sc.hasNext()) ? sc.next() : "<ERROR>";
-    }
+}
     public String getSkill(){
         return skill;
     }

@@ -1,3 +1,4 @@
+import javax.sound.sampled.Port;
 import java.util.*;
 
 public class Seaport extends Thing{
@@ -15,32 +16,38 @@ public class Seaport extends Thing{
         docks = new ArrayList<>();
     }
 
+    //public ArrayList sortPorts(ArrayList<Dock> dock){
+      //  Collections.sort(dock);
+   // return dock;
+    //}
+
     ArrayList<Dock> getDocks(){
         return docks;
     }
     public void setDocks(ArrayList<Dock> d){
-        docks = d;
+        this.docks = d;
     }
 
     public ArrayList<Ship> getQueue(){
         return queue;
     }
     public void setQueue(ArrayList<Ship> q){
-        queue = q;
+        this.queue = q;
     }
 
     public ArrayList<Ship> getShips(){
         return ships;
     }
     public void setShips(ArrayList<Ship> s){
-        ships = s;
+        this.ships = s;
     }
 
     public ArrayList<Person> getPersons(){
         return persons;
     }
     public void setPersons(ArrayList<Person> p){
-        persons = p;
+
+        this.persons = p;
     }
 
     public String toString () {

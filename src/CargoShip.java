@@ -41,7 +41,7 @@ public class CargoShip extends Ship {
     }
 
     public String toString () {
-        return String.format("%s\n     Cargo Value: %.2f\n     Cargo Volume: %.2f\n     Cargo Weight: %.2f\n",
+        return String.format("%s \n     Cargo Value: %.2f\n     Cargo Volume: %.2f\n     Cargo Weight: %.2f\n",
                 super.toString(), cargoValue, cargoVolume, cargoWeight);
     }
 }

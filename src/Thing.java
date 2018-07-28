@@ -1,10 +1,14 @@
 import java.util.*;
 
-public class Thing implements Comparable<Thing>  {
+public class Thing  {
 
     int index = 0;
     String name;
     int parent = 1;
+
+    public Thing(){
+
+    }
 
     public Thing(Scanner sc) {
         if (sc != null) {
@@ -25,7 +29,7 @@ public class Thing implements Comparable<Thing>  {
     }
 
     public void setName(String n) {
-        name = n;
+        this.name = n;
     }
 
     public String getName() {
@@ -44,15 +48,6 @@ public class Thing implements Comparable<Thing>  {
 
     public String toString() {
         return name;
-    }
-
-    @Override
-    public int compareTo(Thing o) {
-        boolean comp =
-                (o.getIndex() == this.getIndex()) &&
-                        (o.getName().equals(this.getName())) &&
-                        (o.getParent() == this.getParent());
-        return (comp) ? 1 : 0;
     }
 }
 

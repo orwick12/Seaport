@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+
 import java.util.Scanner;
 
 public class Ship  extends Thing{
@@ -7,16 +9,15 @@ public class Ship  extends Thing{
     double draft, length, weight, width;
     ArrayList<Job> jobs;
 
+     //public ArrayList sortWeight(ArrayList<Dock> dock){
+       //  Collections.sort(dock);
+     //return dock;
+     //}
 
     public String toString () {
-        String out = String.format("%s\n     Draft: %.2f\n     Length: %.2f\n     Weight: %.2f\n     Width: %.2f\n     Jobs:",
-                super.toString(), draft, length, weight, width);
 
-        if(getJobs().isEmpty()){
-            return String.format("%s None",out);
-        }
-        for(Job mj : getJobs()) out += String.format("\n%s", mj.toString());
-        return out;
+        return String.format("%s\n     Draft: %.2f\n     Length: %.2f\n     Weight: %.2f\n     Width: %.2f\n     Jobs:",
+                super.toString(), draft, length, weight, width);
     }
 
     public Ship (Scanner sc) {
