@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-public class Job extends Thing {
+public class Job extends Thing /*implements Runnable*/{
 
     static Random rn = new Random();
     JPanel parent;
@@ -24,13 +24,14 @@ public class Job extends Thing {
     private double duration;
     private ArrayList<String> skills; //skills of a person
 
-    public Job (HashMap <Integer, skills> hmElements, JPanel cv, Scanner sc) {
+    /*
+    public Job (HashMap <Integer, Person> person, JPanel cv, Scanner sc) {
         parent = cv;
         sc.next (); // dump first field, j
-        jobIndex = sc.nextInt ();
         jobName = sc.next ();
+        jobIndex = sc.nextInt ();
         int target = sc.nextInt ();
-        worker = (Person) (hmElements.get (target));
+        worker = (Person) (person.get (target));
         jobTime = sc.nextInt ();
         pm = new JProgressBar ();
         pm.setStringPainted (true);
@@ -55,7 +56,7 @@ public class Job extends Thing {
 
         new Thread (this).start();
     }
-
+*/
 
 //     JLabel jln = new JLabel (worker.name);
 //       following shows how to align text relative to icon
@@ -94,7 +95,10 @@ public class Job extends Thing {
         } // end switch on status
     } // end showStatus
 
-    /*public void run () {
+
+/*____________________________________________________________________
+
+    public void run () {
         long time = System.currentTimeMillis();
         long startTime = time;
         long stopTime = time + 1000 * jobTime;
@@ -134,12 +138,14 @@ public class Job extends Thing {
 
     } // end method run - implements runnable
 
+    */
+
     public String toString () {
         String sr = String.format ("j:%7d:%15s:%7d:%5d", jobIndex, jobName, worker.index, jobTime);
         return sr;
     } //end method toString
 
-*/
+
     public void setDuration(int r){
         if (r > 0){
             duration = r;

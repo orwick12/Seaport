@@ -70,8 +70,8 @@ public class World extends Thing {
                     assignPerson(person, portMap);
                     break;
                 case "job":
-                    Job job = new Job(sc);
-                    assignJob(job, shipMap);
+                    //Job job = new Job(shipMap,jp, sc);
+                    break;
                 default:
                     break;
             }
@@ -79,7 +79,7 @@ public class World extends Thing {
         //System.out.println("portHash " + portMap.toString() + "\ndockHash " + dockMap.toString() + "\nshipHash " + shipMap.toString());
     }
 
-    public void assignJob(Job j, HashMap<Integer, Ship> shipMap){
+    /*public void assignJob(Job j, HashMap<Integer, Ship> shipMap){
         Ship s;
         if(shipMap.get(j.getParent()) != null) {
             s = shipMap.get(j.getParent());
@@ -87,7 +87,7 @@ public class World extends Thing {
             j.setParent(shipMap);
 
         }
-    }
+    }*/
 
     Seaport getSeaport(int x) {
         for (Seaport msp: ports)
