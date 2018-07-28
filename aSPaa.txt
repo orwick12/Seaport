@@ -40,6 +40,12 @@ port Lanshan 10000 0
     person                Betsy 50004 10000 cleaner
     person               Archie 50003 10000 captain
     person               Thomas 50001 10000 clerk
+    
+// job    name index parent duration [skill]+ (one or more, matches skill in person, may repeat)
+//    job    <string> <int> <int> <double> [<string>]+
+    job         Job_86_85_12 60264 30093 109.72
+    job         Job_48_34_30 60353 40107 99.52 driver clerk captain
+    job         Job_99_72_28 60270 30099 115.61
   
 
 
