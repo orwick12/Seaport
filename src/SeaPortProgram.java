@@ -27,10 +27,12 @@ public class SeaPortProgram extends JFrame {
     JTextField textField1;
     JPanel jp = new JPanel();
     JPanel jobPanel = new JPanel();
+    JButton jobButton = new JButton();
+    JSplitPane splitPane = new JSplitPane();
+    JPanel jpJobs;
 
 
     World world = new World(null);
-   // DefaultMutableTreeNode topNode = new DefaultMutableTreeNode();
 
     //GUI Constructor
     public SeaPortProgram() {
@@ -46,8 +48,13 @@ public class SeaPortProgram extends JFrame {
         add(scrollPane1, BorderLayout.EAST);
         scrollPane1.setPreferredSize(new Dimension(250, 400));
 
-        add(jobPanel, BorderLayout.CENTER);
-        jobPanel.setPreferredSize(new Dimension(750, 400));
+        jpJobs = new JPanel();
+        jpJobs.setLayout(new java.awt.GridLayout(0, 1));
+        jpJobs.add(new JLabel("The Jobs"));
+
+        add(jpJobs, BorderLayout.CENTER);
+        jpJobs.setPreferredSize(new Dimension(750, 400));
+
 
 
         JButton readButton = new JButton("Read");
@@ -55,7 +62,7 @@ public class SeaPortProgram extends JFrame {
         JButton searchButton = new JButton("Search");
         JButton sortButton = new JButton("Sort");
         JLabel searchLabel = new JLabel("Search Target");
-        JButton backgroundButton = new JButton("Background Music");
+        JButton jobButton = new JButton("Jobs");
         JTextField textField1 = new JTextField(10);
 
         JComboBox<String> comboBox = new JComboBox<String>();
@@ -84,11 +91,10 @@ public class SeaPortProgram extends JFrame {
         jp.add(sortLabel);
         jp.add(comboBox2);
         jp.add(sortButton);
-        jp.add(backgroundButton);
-
-
+        jp.add(jobButton);
 
         add(jp, BorderLayout.PAGE_START);
+
         validate();
 
         //actionlisteners for buttons
@@ -96,8 +102,26 @@ public class SeaPortProgram extends JFrame {
         displayButton.addActionListener(e -> displaySeaport());
         searchButton.addActionListener(e -> search((String) (comboBox.getSelectedItem()), textField1.getText()));
         sortButton.addActionListener(e -> sortOptions((String) (comboBox2.getSelectedItem())));
-        backgroundButton.addActionListener(e -> backgroundMusic());
+        jobButton.addActionListener(e -> addJobs());
+
     }//end constructor
+
+    public void addJobs() {
+
+        if (world == null) return;
+        for (Seaport p : world.ports)
+            for (Ship s : p.ships)
+                    for (Job j : s.jobs)
+                        jpJobs.add(j.jPPanel);
+        validate();
+        //for (Seaport port : world.ports)
+         //   for (Ship ship : port.ships)
+           //     for(Job job : ship.jobs)
+            //        job.runJob();
+             //  validate();
+    }
+
+
 
     public void backgroundMusic(){
         try {
@@ -125,14 +149,8 @@ public class SeaPortProgram extends JFrame {
                     }
                     world.process(sc);
 
-
-                    //JTree tree = new JTree(createNodes());
-                    //JScrollPane pane2 = new JScrollPane(tree);
-                    //add(pane2, BorderLayout.WEST);
-                    //validate();
-
                 }
-                createTable();
+               // createTable();
             } catch (IOException e) {
                 textArea1.append("Problem occurred while reading selected file.\n");
             }
@@ -144,28 +162,8 @@ public class SeaPortProgram extends JFrame {
         textArea1.append(world + "\n\n It is a large world!\n\n");
     }
 
-    void createTable(){
 
-        String[] header = {"Ship", "Port", "Dock", "Job", "Progress", "Go", "Cancel"};
 
-        Object[][] data = {{"Shisdfap", "Poasdrt", "Docasdfk", "Jobas", "Prfdsogress", "Goasdf", "Canasdfcel"},
-{"Ship", "Port", "Dock", "Job", "Progress", "Go", "Cancel"}};
-
-       // tableModel jobModel = new tableModel(header);
-        JTable jobTable = new JTable(data, header);
-        jobTable.setRowHeight(30);
-
-        JPanel tablePanel = new JPanel(new BorderLayout());
-        tablePanel.add(jobTable.getTableHeader(), BorderLayout.NORTH);
-        tablePanel.add(jobTable, BorderLayout.CENTER);
-
-        JPanel jobButtonPanel = new JPanel();
-        tablePanel.add(jobButtonPanel, BorderLayout.WEST);
-
-        JScrollPane tableScroll = new JScrollPane(tablePanel);
-        jobPanel.add(tableScroll);
-        validate();
-    }
 
     //search method input type and target determine which type with switch and use that search by method
     public void search(String type, String target) {
@@ -252,22 +250,5 @@ public class SeaPortProgram extends JFrame {
             SeaPortProgram sp = new SeaPortProgram();
         }//end main
 
-       /* private DefaultMutableTreeNode createNodes() {
-
-            DefaultMutableTreeNode top = new DefaultMutableTreeNode("World");
-            DefaultMutableTreeNode node, dockNode, portNode;
-            DefaultMutableTreeNode worldNode = new DefaultMutableTreeNode("Ports");
-            top.add(worldNode);
-            for (Seaport sp : world.getPorts()) {
-            portNode = new DefaultMutableTreeNode(sp);
-            worldNode.add(portNode);
-            node = new DefaultMutableTreeNode("Docks");
-                for (Dock d : sp.getDocks()) {
-                    dockNode = new DefaultMutableTreeNode(d);
-                    dockNode.add(new DefaultMutableTreeNode(d.getShip()));
-                    node.add(dockNode);
-                }
-            }
-        return top;}*/
 }
 

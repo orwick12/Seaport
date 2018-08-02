@@ -1,13 +1,17 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Ship  extends Thing{
 
+
     PortTime arrivalTime, dockTime;
     double draft, length, weight, width;
     ArrayList<Job> jobs;
+    Seaport port;
+    Dock dock;
 
      //public ArrayList sortWeight(ArrayList<Dock> dock){
        //  Collections.sort(dock);
@@ -26,6 +30,7 @@ public class Ship  extends Thing{
         if (sc.hasNextDouble()) length = sc.nextDouble();
         if (sc.hasNextDouble()) width = sc.nextDouble();
         if (sc.hasNextDouble()) draft = sc.nextDouble();
+        jobs = new ArrayList<>();
     } // end end Scanner constructor*/
 
     public PortTime getArrivalTime(){
@@ -84,4 +89,5 @@ public class Ship  extends Thing{
     public void setJobs(ArrayList<Job> j){
         jobs = j;
     }
+
 }

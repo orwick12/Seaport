@@ -1,4 +1,5 @@
 
+import javax.swing.*;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,6 +14,7 @@ public class World extends Thing {
 
     ArrayList<Seaport> ports;
     PortTime time;
+    JPanel jp;
 
     //Constructor
     public World(Scanner sc) {
@@ -41,6 +43,10 @@ public class World extends Thing {
      * It will use a switch case to determine what is being scanned in then assign it to the correct parents
      * @param sc
      */
+    void check (Scanner sc){
+        System.out.println(sc);
+    }
+
     void process(Scanner sc) {
         if(sc.hasNext()) {
             switch (sc.next().trim()) {
@@ -70,7 +76,9 @@ public class World extends Thing {
                     assignPerson(person, portMap);
                     break;
                 case "job":
-                    //Job job = new Job(shipMap,jp, sc);
+                    Job job = new Job(shipMap,sc);
+                    System.out.println(job);
+                    assignJob(job,shipMap);
                     break;
                 default:
                     break;
@@ -79,15 +87,14 @@ public class World extends Thing {
         //System.out.println("portHash " + portMap.toString() + "\ndockHash " + dockMap.toString() + "\nshipHash " + shipMap.toString());
     }
 
-    /*public void assignJob(Job j, HashMap<Integer, Ship> shipMap){
+    public void assignJob(Job j, HashMap<Integer, Ship> shipMap){
         Ship s;
-        if(shipMap.get(j.getParent()) != null) {
-            s = shipMap.get(j.getParent());
+        if(shipMap.get(j.ship.index) != null) {
+            s = shipMap.get(j.ship.index);
             s.jobs.add(j);
-            j.setParent(shipMap);
-
+           // j.setParent(s.index);
         }
-    }*/
+    }
 
     Seaport getSeaport(int x) {
         for (Seaport msp: ports)
@@ -104,12 +111,18 @@ public class World extends Thing {
             if (msp.docks != null) {
                 msp.ships.add(ms);
                 msp.queue.add(ms);
+                ms.port = msp; // ND:
             }
-            return;
+        } else {
+            md.ship = ms;
+            ms.dock = md;
+            msp = getSeaport(md.parent);
+            msp.ships.add(ms);
+            ms.port = msp;
         }
-        md.ship = ms;
-        getSeaport (md.parent).ships.add (ms);
+        System.out.printf(">>>>> Ship: %s, Port: %s\n", ms.name, ms.port.name);
     }
+
     //method for assigning ports to the world
     public void assignPort(Seaport msp){
         ports.add(msp);

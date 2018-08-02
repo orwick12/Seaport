@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Thing  {
 
+    protected boolean busyFlag;
     int index = 0;
     String name;
     int parent = 1;
